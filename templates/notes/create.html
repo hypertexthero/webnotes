@@ -1,17 +1,47 @@
 {% extends 'base.html' %}
 
 {% block content %}
+
     {# <form action="" method="post"> #}
     {#     {% csrf_token %} #}
     {#     {{ form.as_p }}     #}
     {#     <p><input type="submit" value="Continue &rarr;" /></p> #}
     {# </form> #}
+    
+    {# Customized form template: https://docs.djangoproject.com/en/dev/topics/forms/#customizing-the-form-template #}
+    
+    {# TODO: #}
+    {#     - apply existing django date picker widget #}
+    {#     - customize content_markdown textarea for size & wmd? - https://docs.djangoproject.com/en/dev/topics/forms/modelforms/#modelform and https://docs.djangoproject.com/en/dev/topics/forms/modelforms/#overriding-the-default-field-types-or-widgets#} 
+    
     <form action="" method="post">
         {% csrf_token %}
-        <label for="id_title">Title:</label><br />
-        <input id="id_title" type="text" name="title" maxlength="255" size="111" /><br />
-        <label for="id_content">Content:</label><br />
-        <textarea id="id_content" rows="20" cols="80" name="content"></textarea><br />
-        <input type="submit" value="Continue &rarr;" />
+
+        {# Reusable form templates: https://docs.djangoproject.com/en/dev/topics/forms/#reusable-form-templates #}
+        {% include "includes/note_form.html" %}
+  
+        {# {{ form.non_field_errors }} #}
+        {#   <div class="fieldWrapper"> #}
+        {#       {{ form.title.errors }} #}
+        {#       <label for="id_title">Title:</label> #}
+        {#       {{ form.title }} #}
+        {#   </div> #}
+        {#   <div class="fieldWrapper"> #}
+        {#       {{ form.content_markdown.errors }} #}
+        {#       <label for="id_content_markdown">Note (Markdown syntax):</label><br /> #}
+        {#       {{ form.content_markdown }} #}
+        {#   </div> #}
+        {#   <div class="fieldWrapper"> #}
+        {#       {{ form.created.errors }} #}
+        {#       <label for="id_created">Created:</label> #}
+        {#       {{ form.created }} #}
+        {#   </div> #}
+        {#   <div class="fieldWrapper"> #}
+        {#       {{ form.modified.errors }} #}
+        {#       <label for="id_modified">Modified:</label> #}
+        {#       {{ form.modified }} #}
+        {#   </div> #}
+        <p><input type="submit" value="Post Note &rarr;" /></p>
     </form>
+    
 {% endblock %}

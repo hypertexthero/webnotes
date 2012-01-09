@@ -32,7 +32,7 @@ def notes_list(request):
     """Show all notes"""
  
     return object_list(request, 
-        queryset=Notes.objects.all().order_by('-added_at', 'title'), # https://docs.djangoproject.com/en/dev/ref/models/querysets/#django.db.models.query.QuerySet.order_by
+        queryset=Notes.objects.all().order_by('-modified', 'title'), # https://docs.djangoproject.com/en/dev/ref/models/querysets/#django.db.models.query.QuerySet.order_by
         template_name='notes/list.html',
         template_object_name='note'
     )

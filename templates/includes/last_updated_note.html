@@ -2,6 +2,6 @@
 <div id="lastupdate">
     {% for note in notes %}
         <h4><a href="/notes/detail/{{ note.id }}">{{ note.title }}</a></h4>
-        {{ note.content }}
+        {{ note.content_html|safe }}
     {% endfor %}
 </div>

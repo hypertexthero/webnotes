@@ -4,7 +4,7 @@
     {% if note_list %}
     <ul>
     {% for note in note_list %}
-        <li><a href="{% url notes_detail note.id %}">{{ note.title }}</a> <small>last edited {{note.last_update|timesince}} ago</small></li>
+        <li><a href="{% url notes_detail note.id %}">{{ note.title }}</a> <small>last edited {{note.modified|timesince}} ago</small></li>
     {% endfor %}
     </ul>
     {% else %}
@@ -12,7 +12,7 @@
     {% endif %}
     
     {# http://www.djangrrl.com/post/custom-template-tags-in-django/ #}
-    <h3>Last Updated Note:</h3>
+    <h4>Last Updated Note:</h4>
     {% load tags %}
     {% latestnote %}
        

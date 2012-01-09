@@ -9,4 +9,8 @@ div#nav {float:right; width:25%; text-align:right; padding:1em 1em 0;}
 div#nav p {margin:0;}
 div#content {clear:both; padding:1em 1em 0.25em;}
 
+.errorlist {color:red;}
+
+hr {display:block; position:relative; padding:0; margin:1em auto; width:100%; clear:both; border:none; border-top:1px solid #ddd; border-bottom:1px solid #FFF; font-size:1px; line-height:0; overflow:visible;}
+div#lastupdate {border:1px solid #ddd; padding:0 1em; margin-bottom:1em;}
 div#footer {font-size:0.9em; color:#ccc; border-top:1px solid #ddd; padding:0 1em 1em;}

@@ -5,8 +5,8 @@
 
 {% block content %}
         <h2>{{ note.title }}</h2>
-        <p>{{ note.content }}</p>
+        {{ note.content_html|safe }}
         {% if user.is_authenticated %} 
-        <a href="{% url notes_update note.id %}">Edit</a> · <a href="{% url notes_delete note.id %}">Delete</a>    
+            <p><a href="{% url notes_update note.id %}">Edit</a> · <a href="{% url notes_delete note.id %}">Delete</a></p>
         {% endif %}
 {% endblock %}

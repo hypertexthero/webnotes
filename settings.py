@@ -43,7 +43,10 @@ MEDIA_ROOT = os.path.join(DIRNAME, 'uploads')
 MEDIA_URL = 'http://127.0.0.1/media/'
 STATIC_ROOT = os.path.join(DIRNAME, 'static')
 STATIC_URL = 'http://127.0.0.1/static/'
+
+# ln -s ~/django_projects/notes-env/lib/python2.6/site-packages/django/contrib/admin/media/ ~/django_projects/notes-env/webnotes/static/admin
 ADMIN_MEDIA_PREFIX = '/static/admin/'
+
 STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.

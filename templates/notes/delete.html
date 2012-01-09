@@ -1,9 +1,13 @@
 {% extends 'base.html' %}
+{% block headtitle %}Deleting &lsquo;{{ note.title }}&rsquo; - {% endblock %}
+
+{% block breadcrumbs %} &rarr; <strong>Delete:</strong> &lsquo;{{ note.title }}&rsquo;?{% endblock %}
+
 
 {% block content %}
     <form action="" method="post">
         {% csrf_token %}
-        <p>Are you sure want to delete the note titled "<em>{{ note.title }}</em>"?</p>
-        <p><input type="submit" value="Continue &rarr;" /> or <a href="{% url notes_detail note.id %}">Cancel</a></p>
+        <p>Are you sure want to <strong class="warning">delete</strong> the note titled "<em>{{ note.title }}</em>"?</p>
+        <p><input type="submit" value="Yes, Delete" /> or <a href="{% url notes_detail note.id %}">Cancel</a></p>
     </form>
 {% endblock %}

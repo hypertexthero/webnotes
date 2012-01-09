@@ -9,7 +9,7 @@
 
     <div id="header">
         <p class="breadcrumbs">
-            <strong><a href="{% url notes_list %}">Notes List</a></strong> {% block breadcrumbs %}{% endblock %}
+            <strong><a href="{% url notes_list %}">Notes</a></strong> {% block breadcrumbs %}{% endblock %}
         </p>
 
         <div id="nav">
@@ -17,6 +17,7 @@
                 <p>Welcome <strong>{{ user }}</strong>! <a href="{% url django.contrib.auth.views.logout %}?next={% firstof request.path '/' %}">Logout</a> or <strong><a href="{% url notes_create %}">add a note +</a></strong></p>
             {% else %}
                 {# http://stackoverflow.com/a/1711592/412329 #}
+                {# Alternative redirect technique?: http://stackoverflow.com/a/476720/412329 #}
                 <p><a href="{% url django.contrib.auth.views.login %}?next={% firstof request.path '/' %}">Login</a></p>
             {% endif %}
         </div>

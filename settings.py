@@ -100,7 +100,7 @@ ROOT_URLCONF = 'webnotes.urls'
 
 # URL of the login page.
 LOGIN_URL = '/login/'
-LOGIN_REDIRECT_URL = '/notes/list/'
+LOGIN_REDIRECT_URL = '/notes/'
 
 INSTALLED_APPS = (
     'django.contrib.auth',

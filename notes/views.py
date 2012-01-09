@@ -44,7 +44,7 @@ def notes_detail(request, id):
         queryset=Notes.objects.all(),
         object_id=id,
         template_name='notes/detail.html',
-        template_object_name='note'
+        template_object_name='note' # so I can write {{ note.title }} in templates/notes/detail.html (otherwise I would need to write {{ object.title }})
     )
 
 # see also this alternative: http://djangosnippets.org/snippets/966/
@@ -66,7 +66,8 @@ def notes_update(request, id):
         model=Notes,
         object_id=id,
         template_name='notes/update.html',
-        post_save_redirect=reverse("notes_list")
+        post_save_redirect=reverse("notes_list"),
+        template_object_name='note' # so I can write {{ note.title }} in templates/notes/update.html (otherwise I would need to write {{ object.title }})
     )            
 
 @login_required
@@ -76,7 +77,7 @@ def notes_delete(request, id):
     return delete_object(request,
         model=Notes,
         object_id=id,
-        template_object_name='note',
+        template_object_name='note', # so I can write {{ note.title }} in templates/notes/delete.html (otherwise I would need to write {{ object.title }})
         template_name='notes/delete.html',
         post_delete_redirect=reverse("notes_list")
     )

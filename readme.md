@@ -209,8 +209,8 @@ Since you already have the tables created in the database, you need to run the i
 
     urlpatterns = patterns('', 
 
-        url(r'^list/$', views.notes_list, name='notes_list'),  
-        url(r'^detail/(?P<id>\d+)/$', views.notes_detail, name='notes_detail'),  
+        url(r'^$', views.notes_list, name='notes_list'),  
+        url(r'^(?P<id>\d+)/$', views.notes_detail, name='notes_detail'),  
         url(r'^new/$', views.notes_create, name='notes_create'),  
         url(r'^update/(?P<id>\d+)/$', views.notes_update, name='notes_update'),  
         url(r'^delete/(?P<id>\d+)/$', views.notes_delete, name='notes_delete'),  
@@ -223,7 +223,7 @@ Since you already have the tables created in the database, you need to run the i
     urlpatterns = patterns('',
         (r'^notes/', include('notes.urls')),
 
-# Run development server - and then go to http://127.0.0.1:8000/notes/list/
+# Run development server - and then go to http://127.0.0.1:8000/notes/
 
     $ python manage.py runserver
     

@@ -41,3 +41,16 @@ class Notes(models.Model):
     # def get_absolute_url(self):
     #     # return ('collection_detail', None, {'object_id': self.id})
     #     return ("note_permalink", (), {'id': self.id})
+
+
+# Do I want to do all this just to set the textarea attributes? Or find another way?
+# http://stackoverflow.com/questions/4190386/how-to-add-extra-fields-using-django-forms-textarea
+# from django.forms import ModelForm, Textarea
+
+# class NotesForm(ModelForm):
+#     class Meta:
+#         model = Notes
+#         fields = ('title', 'content_markdown', 'created', 'modified')
+#         widgets = {
+#             'content_markdown': Textarea(attrs={'cols': 80, 'rows': 40}),
+#         }

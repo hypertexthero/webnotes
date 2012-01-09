@@ -1,4 +1,7 @@
 {% extends 'base.html' %}
+{% block headtitle %}Add New Note - {% endblock %}
+
+{% block breadcrumbs %} &rarr; <strong>Add New:</strong>{% endblock %}
 
 {% block content %}
 
@@ -20,28 +23,7 @@
         {# Reusable form templates: https://docs.djangoproject.com/en/dev/topics/forms/#reusable-form-templates #}
         {% include "includes/note_form.html" %}
   
-        {# {{ form.non_field_errors }} #}
-        {#   <div class="fieldWrapper"> #}
-        {#       {{ form.title.errors }} #}
-        {#       <label for="id_title">Title:</label> #}
-        {#       {{ form.title }} #}
-        {#   </div> #}
-        {#   <div class="fieldWrapper"> #}
-        {#       {{ form.content_markdown.errors }} #}
-        {#       <label for="id_content_markdown">Note (Markdown syntax):</label><br /> #}
-        {#       {{ form.content_markdown }} #}
-        {#   </div> #}
-        {#   <div class="fieldWrapper"> #}
-        {#       {{ form.created.errors }} #}
-        {#       <label for="id_created">Created:</label> #}
-        {#       {{ form.created }} #}
-        {#   </div> #}
-        {#   <div class="fieldWrapper"> #}
-        {#       {{ form.modified.errors }} #}
-        {#       <label for="id_modified">Modified:</label> #}
-        {#       {{ form.modified }} #}
-        {#   </div> #}
-        <p><input type="submit" value="Post Note &rarr;" /></p>
+        <p><input type="submit" value="Add Note &rarr;" /></p>
     </form>
     
 {% endblock %}

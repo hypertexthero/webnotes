@@ -1,0 +1,35 @@
+<html>
+<head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <title>{% block headtitle %}{% endblock %}Webnotes</title>
+    <link rel="stylesheet" href="/static/css/notes.css" type="text/css" media="screen" title="default" charset="utf-8" />
+</head>
+<body>
+
+    <div id="header">
+        <p class="breadcrumbs">
+            <strong><a href="{% url notes_list %}">Notes List</a></strong> {% block breadcrumbs %}{% endblock %}
+        </p>
+
+        <div id="nav">
+            {% if user.is_authenticated %}
+                <p>Welcome <strong>{{ user }}</strong>! <a href="{% url django.contrib.auth.views.logout %}?next={% firstof request.path '/' %}">Logout</a> or <strong><a href="{% url notes_create %}">add a note +</a></strong></p>
+            {% else %}
+                {# http://stackoverflow.com/a/1711592/412329 #}
+                <p><a href="{% url django.contrib.auth.views.login %}?next={% firstof request.path '/' %}">Login</a></p>
+            {% endif %}
+        </div>
+    </div>
+    
+    <div id="content">
+        {% block content %}{% endblock %}
+    </div>
+    
+    <div id="footer">
+        <p>Django version: {{ django_version }}</p>
+        {# {% load tags %} #}
+        {# {% get_current_time "%Y-%m-%d %I:%M %p" as the_time %} #}
+        {# <p>The time is {{ the_time }}.</p> #}
+    </div>
+</body>
+</html>

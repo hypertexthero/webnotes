@@ -1,0 +1,7 @@
+{# http://www.djangrrl.com/post/custom-template-tags-in-django/ #}
+<div id="lastupdate">
+    {% for note in notes %}
+        <h4><a href="/notes/detail/{{ note.id }}">{{ note.title }}</a></h4>
+        {{ note.content }}
+    {% endfor %}
+</div>

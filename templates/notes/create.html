@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {# <form action="" method="post"> #}
+    {#     {% csrf_token %} #}
+    {#     {{ form.as_p }}     #}
+    {#     <p><input type="submit" value="Continue &rarr;" /></p> #}
+    {# </form> #}
+    <form action="" method="post">
+        {% csrf_token %}
+        <label for="id_title">Title:</label><br />
+        <input id="id_title" type="text" name="title" maxlength="255" size="111" /><br />
+        <label for="id_content">Content:</label><br />
+        <textarea id="id_content" rows="20" cols="80" name="content"></textarea><br />
+        <input type="submit" value="Continue &rarr;" />
+    </form>
+{% endblock %}

@@ -4,7 +4,13 @@
     {% if note_list %}
     <ul>
     {% for note in note_list %}
-        <li><a href="{% url notes_detail note.id %}">{{ note.title }}</a> <small>last edited {{note.modified|timesince}} ago</small></li>
+        <li>
+            <a href="{% url notes_detail note.id %}">{{ note.title }}</a> <span class="small quiet">last edited {{note.modified|timesince}} ago</span>
+            {% if user.is_authenticated %} 
+                · <span class="small"><a href="{% url notes_update note.id %}">edit</a> · <a href="{% url notes_delete note.id %}">delete</a></span>
+            {% endif %}
+        
+        </li>
     {% endfor %}
     </ul>
     {% else %}

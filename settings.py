@@ -72,11 +72,10 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.static',
     'django.contrib.auth.context_processors.auth',
     'django.contrib.messages.context_processors.messages',
-
+    # display django version in footer using template tag defined in context_processors.py - http://stackoverflow.com/questions/4256145/django-template-tag-to-display-django-version
     'webnotes.context_processors.django_version',
     # required to have login form on every page and for templatetags - http://stackoverflow.com/questions/2734055/putting-a-django-login-form-on-every-page
     'django.core.context_processors.request',
-    # display django version in footer using template tag defined in context_processors.py - http://stackoverflow.com/questions/4256145/django-template-tag-to-display-django-version
 )
  
 TEMPLATE_DIRS = (
@@ -129,6 +128,7 @@ LOGGING = {
     }
 }
 
+# database, secret key, etc are in settings_local.py
 try:
     from settings_local import *
 except ImportError:

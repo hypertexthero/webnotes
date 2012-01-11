@@ -1,0 +1,10 @@
+{# http://www.djangrrl.com/post/custom-template-tags-in-django/ #}
+<div id="lastupdate">
+    {% for note in notes %}
+        <h4><a href="/notes/{{ note.id }}">{{ note.title }}</a></h4>
+        {{ note.content_html|safe }}
+        {% if user.is_authenticated %} 
+            <p><a href="{% url notes_update note.id %}">Edit</a> · <a href="{% url notes_delete note.id %}">Delete</a></p>
+        {% endif %}
+    {% endfor %}
+</div>

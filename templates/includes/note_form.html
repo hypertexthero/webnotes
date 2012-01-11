@@ -2,23 +2,33 @@
 {# Reusable form templates: https://docs.djangoproject.com/en/dev/topics/forms/#reusable-form-templates #}
 
 {{ form.non_field_errors }}
-<div class="fieldWrapper">
+<fieldset>
     {{ form.title.errors }}
-    <label for="id_title">Title:</label>
-    {{ form.title }}
-</div>
-<div class="fieldWrapper">
+    <label for="id_title">Title:</label><br />
+    {# {{ form.title }} #}
+    <input id="id_title" type="text" name="title" value="{{ form.title.value|default:'' }}" maxlength="255" tabindex="1" />
+</fieldset>
+
+<fieldset>
     {{ form.content_markdown.errors }}
     <label for="id_content_markdown">Note (Markdown syntax):</label><br />
-    {{ form.content_markdown }}
-</div>
-<div class="fieldWrapper">
+
+    {# {{ form.content_markdown }} #}
+    {# Keeping presentation in template rather than in modelform widgets: #}
+        {# - https://docs.djangoproject.com/en/dev/topics/forms/#looping-over-the-form-s-fields #}
+        {# - http://stackoverflow.com/a/2152407/412329 #}
+    <textarea id="id_content_markdown" rows="40" cols="80" name="content_markdown" tabindex="2">{{ form.content_markdown.value|default:'' }}</textarea> 
+    
+</fieldset>
+
+<fieldset>
     {{ form.created.errors }}
-    <label for="id_created">Created:</label>
+    <label for="id_created">Created:</label><br />
     {{ form.created }}
-</div>
-<div class="fieldWrapper">
+</fieldset>
+
+<fieldset>
     {{ form.modified.errors }}
-    <label for="id_modified">Modified:</label>
+    <label for="id_modified">Modified:</label><br />
     {{ form.modified }}
-</div>
+</fieldset>

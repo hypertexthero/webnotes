@@ -9,4 +9,4 @@ def latestnote():
     notes = Notes.objects.all().order_by('-modified', 'title')[:1]
     return {'notes': notes}
 
-register.inclusion_tag('includes/last_updated_note.html')(latestnote)
+register.inclusion_tag('includes/latestnote.html')(latestnote)

@@ -1,12 +1,20 @@
 {% extends 'base.html' %}
 {% block headtitle %}{{ note.title }} - {% endblock %}
 
+{% block bodyid %} id="detail"{% endblock %}
+
 {% block breadcrumbs %} &rarr; {{ note.title }}{% endblock %}
 
 {% block content %}
-        <h2>{{ note.title }}</h2>
+        <h1>{{ note.title }}</h1>
+        <p class="dateline"><em>Published: {{ note.created|date:"d F Y" }}</em></p>
+        
         {{ note.content_html|safe }}
         {% if user.is_authenticated %} 
             <p class="small"><a href="{% url notes_update note.id %}">Edit</a> · <a href="{% url notes_delete note.id %}">Delete</a></p>
         {% endif %}
+{% endblock %}
+
+{% block footer %}
+    Page last modified: {{ note.modified|date:"d F Y, H:m" }}<br />
 {% endblock %}

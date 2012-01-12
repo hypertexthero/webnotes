@@ -2,6 +2,9 @@
 settings_local.py
 settings_local_production.py
 
+# Old readme not necessary but keeping it around for now
+readme_old.md
+
 # No shell scripts or conf files?
 conf/
 init.sh

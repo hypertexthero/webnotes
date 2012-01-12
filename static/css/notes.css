@@ -16,6 +16,8 @@ fieldset textarea {width:90%; padding:0.5em;}
 
 .errorlist, .warning {color:red;}
 
+body#detail h1 {margin-bottom:0;}
+
 .small, div.footnote {font-size:0.9em;}
 .quiet {color:#999;}
 .floatright {float:right;}
@@ -24,4 +26,4 @@ fieldset textarea {width:90%; padding:0.5em;}
 hr {display:block; position:relative; padding:0; margin:1em auto; width:100%; clear:both; border:none; border-top:1px solid #ddd; border-bottom:1px solid #FFF; font-size:1px; line-height:0; overflow:visible;}
 div#lastupdate {border:1px solid #ddd; padding:0 1em; margin-bottom:1em;}
 
-div#footer {font-size:0.9em; color:#ccc; border-top:1px solid #ddd; padding:0 1em 1em; clear:both;}
+div#footer {font-size:0.9em; border-top:1px solid #ddd; padding:0 1em 1em; clear:both;}

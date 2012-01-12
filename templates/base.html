@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="/static/css/notes.css" type="text/css" media="screen" title="default" charset="utf-8" />
     <link rel="stylesheet" href="/static/css/code.css" type="text/css" media="screen" title="default" charset="utf-8" />
 </head>
-<body>
+<body{% block bodyid %}{% endblock %}>
 
     <div id="header">
         <p class="breadcrumbs">
@@ -28,10 +28,13 @@
     </div>
     
     <div id="footer">
-        <p>Django version: {{ django_version }}</p>
+        <p>
+        {% block footer %}{% endblock %}
+        Django version: {{ django_version }}
         {# {% load tags %} #}
         {# {% get_current_time "%Y-%m-%d %I:%M %p" as the_time %} #}
         {# <p>The time is {{ the_time }}.</p> #}
+        </p>
     </div>
 </body>
 </html>

@@ -6,7 +6,7 @@ Features
 ========
 
 - [Markdown for editing, HTML for display](https://code.djangoproject.com/wiki/UsingMarkup).
-- Dates on homepage are displayed only once for notes published on the same day. Using ['ifchanged'](https://docs.djangoproject.com/en/dev/ref/templates/builtins/?from=olddocs#ifchanged).
+- Dates on homepage are displayed only once for notes published on the same day. Using '[ifchanged](https://docs.djangoproject.com/en/dev/ref/templates/builtins/?from=olddocs#ifchanged) '.
 - Clean, logical URLs (in progress).
 - Simple interface (in progress).
 
@@ -21,7 +21,7 @@ To Do
 - Markdown editing preview with [WMD](https://github.com/ChiperSoft/wmd#readme).
 - [Messages](https://docs.djangoproject.com/en/dev/ref/contrib/messages/) for display after adding, updating and deleting notes, maybe using [Ajax](http://webcloud.se/log/AJAX-in-Django-with-jQuery/).
 - Change permalink of notes to slug instead of id(?)
-- Add published date under article title in detail page and modified date in footer of detail page. Maybe use jQuery [timeago plugin](http://timeago.yarp.com/).
+- Use jQuery [timeago plugin](http://timeago.yarp.com/) for dates?
 - Two categories for notes: links (to other content) and articles (original articles).
 - XML/RPC API for remote publishing.
 - Atom/RSS feeds

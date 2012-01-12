@@ -1,4 +1,4 @@
-The code is liberally commented.
+I started with [this excellent tutorial](http://komunitasweb.com/2010/02/django-tutorial-simple-notes-application/). The code is liberally commented.
 
 —[Simon Griffee](http://hypertexthero.com)
 

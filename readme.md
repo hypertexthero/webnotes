@@ -6,7 +6,7 @@ Features
 ========
 
 - [Markdown for editing, HTML for display](https://code.djangoproject.com/wiki/UsingMarkup).
-- Dates on homepage are displayed only once for notes published on the same day. Using '[ifchanged](https://docs.djangoproject.com/en/dev/ref/templates/builtins/?from=olddocs#ifchanged)'.
+- Dates on homepage are displayed only once for notes published on the same day. Using ['ifchanged'](https://docs.djangoproject.com/en/dev/ref/templates/builtins/?from=olddocs#ifchanged).
 - Clean, logical URLs (in progress).
 - Simple interface (in progress).
 

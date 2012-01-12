@@ -96,6 +96,8 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     # enabling markup so we can have markdown. requires http://www.freewisdom.org/projects/python-markdown
     'django.contrib.markup',
+    # pretty punctuation - http://code.google.com/p/typogrify/
+    'typogrify',
     'django.contrib.staticfiles',
     # Uncomment the next line to enable the admin:
     'django.contrib.admin',

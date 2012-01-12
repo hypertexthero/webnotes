@@ -2,6 +2,7 @@ from django.db import models
 from django.db.models import permalink
 from markdown import markdown
 import datetime
+from typogrify.templatetags.typogrify import typogrify
  
 class Notes(models.Model):
     """Model to save our note"""
@@ -27,7 +28,8 @@ class Notes(models.Model):
             # http://fi.am/entry/code-highlighting-in-django/
             # http://freewisdom.org/projects/python-markdown/CodeHilite
             # http://freewisdom.org/projects/python-markdown/Footnotes
-        self.content_html = markdown(self.content_markdown, ['footnotes', 'codehilite']) 
+            # typogrify - http://code.google.com/p/typogrify/ and http://djangosnippets.org/snippets/381/
+        self.content_html = typogrify(markdown(self.content_markdown, ['footnotes', 'codehilite']))
         # self.content_html = markdown(self.content_markdown)
         self.modified = datetime.datetime.now()
         super(Notes, self).save()

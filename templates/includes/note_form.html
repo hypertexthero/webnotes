@@ -1,6 +1,47 @@
 {# Called as include in templates/notes/create.html and templates/notes/update.html #}
 {# Reusable form templates: https://docs.djangoproject.com/en/dev/topics/forms/#reusable-form-templates #}
 
+{# {% block extrahead %} #}
+{# <script type="text/javascript" src="/static/js/jquery-1.7.1.min.js"></script> #}
+{# <script type="text/javascript" src="/static/js/zebra_datepicker.js"></script> #}
+{# <link rel="stylesheet" href="/static/css/zebra_datepicker.css" type="text/css" media="all" /> #}
+{# <script type="text/javascript" charset="utf-8"> #}
+{# $(document).ready(function() { #}
+{#  #}
+{#     // $('#datepicker-example1').Zebra_DatePicker(); #}
+{#     //  #}
+{#     // $('#datepicker-example2').Zebra_DatePicker({ #}
+{#     //     direction: 1    // boolean true would've made the date picker future only #}
+{#     //                     // but starting from today, rather than tomorrow #}
+{#     // }); #}
+{#     //  #}
+{#     // $('#datepicker-example3').Zebra_DatePicker({ #}
+{#     //     direction: true, #}
+{#     //     disabled_dates: ['* * * 0,6']   // all days, all monts, all years as long #}
+{#     //                                     // as the weekday is 0 or 6 (Sunday or Saturday) #}
+{#     // }); #}
+{#     //  #}
+{#     // $('#datepicker-example4').Zebra_DatePicker({ #}
+{#     //     direction: [1, 10] #}
+{#     // }); #}
+{#  #}
+{#     $('#id_created').Zebra_DatePicker({ #}
+{#         format: 'Y-d-m' #}
+{#     }); #}
+{#  #}
+{#     // $('#datepicker-example6').Zebra_DatePicker({ #}
+{#     //     show_week_number: 'Wk' #}
+{#     // }); #}
+{#     //  #}
+{#     // $('#datepicker-example7').Zebra_DatePicker({ #}
+{#     //     view: 'years' #}
+{#     // }); #}
+{#  #}
+{# }); #}
+{# </script> #}
+{# {% endblock %} #}
+
+
 {{ form.non_field_errors }}
 <fieldset>
     {{ form.title.errors }}
@@ -18,7 +59,6 @@
         {# - https://docs.djangoproject.com/en/dev/topics/forms/#looping-over-the-form-s-fields #}
         {# - http://stackoverflow.com/a/2152407/412329 #}
     <textarea id="id_content_markdown" rows="40" cols="80" name="content_markdown" tabindex="2">{{ form.content_markdown.value|default:'' }}</textarea> 
-    
 </fieldset>
 
 <fieldset>

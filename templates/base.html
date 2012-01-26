@@ -4,6 +4,7 @@
     <title>{% block headtitle %}{% endblock %}Webnotes</title>
     <link rel="stylesheet" href="/static/css/notes.css" type="text/css" media="screen" title="default" charset="utf-8" />
     <link rel="stylesheet" href="/static/css/code.css" type="text/css" media="screen" title="default" charset="utf-8" />
+    {% block extrahead %}{% endblock %}
 </head>
 <body{% block bodyid %}{% endblock %}>
 
@@ -25,6 +26,10 @@
     
     <div id="content">
         {% block content %}{% endblock %}
+    </div>
+    
+    <div id="sidebar">
+        {% block sidebar %}{% endblock %}
     </div>
     
     <div id="footer">

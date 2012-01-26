@@ -1,12 +1,14 @@
-# http://www.djangrrl.com/post/custom-template-tags-in-django/
-
+# http://www.mechanicalgirl.com/post/custom-template-tags-in-django/
 from webnotes.notes.models import Notes
 from django import template
 
 register = template.Library()
 
-def latestnote():
+def latestnote(context): # need 'context' in here otherwise get 'list index out of range' error
     notes = Notes.objects.all().order_by('-modified', 'title')[:1]
-    return {'notes': notes}
+    # http://stackoverflow.com/a/4338108/412329 - passing the user variable into the context
+    user = context['request'].user
+    return {'notes': notes, 'user': user}
 
-register.inclusion_tag('includes/latestnote.html')(latestnote)
+register.inclusion_tag('includes/latestnote.html', takes_context=True)(latestnote) # needed to add 'takes_context=True' argument so that the user variable would get passed into the context
+

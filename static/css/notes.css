@@ -7,9 +7,10 @@ div#header {
 p.breadcrumbs {float:left; width:65%; margin:0; padding:1em 1em 0;}
 div#nav {float:right; width:25%; text-align:right; padding:1em 1em 0;}
 div#nav p {margin:0;}
-div#content {clear:both; padding:1em 1em 0.25em;}
+div#content {float:left; width:65%; padding:1em 1em 0.25em;}
+div#sidebar {float:right; width:30%; padding:1em 1em 0.25em;}
 
-fieldset {border:1px solid #ddd;}
+fieldset {border:1px solid #ddd; background:#eee;}
 fieldset + fieldset {border-top:none;}
 fieldset input {width:90%; padding:0.5em;}
 fieldset textarea {width:90%; padding:0.5em;}

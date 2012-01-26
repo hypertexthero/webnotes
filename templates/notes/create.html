@@ -17,12 +17,11 @@
     {#     - apply existing django date picker widget #}
     {#     - customize content_markdown textarea for size & wmd? - https://docs.djangoproject.com/en/dev/topics/forms/modelforms/#modelform and https://docs.djangoproject.com/en/dev/topics/forms/modelforms/#overriding-the-default-field-types-or-widgets#} 
     
+    
+{# Reusable form templates: https://docs.djangoproject.com/en/dev/topics/forms/#reusable-form-templates #}
     <form action="" method="post">
         {% csrf_token %}
-
-        {# Reusable form templates: https://docs.djangoproject.com/en/dev/topics/forms/#reusable-form-templates #}
         {% include "includes/note_form.html" %}
-  
         <p><input type="submit" value="Add Note &rarr;" /></p>
     </form>
     

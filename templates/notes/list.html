@@ -10,13 +10,13 @@
         <dl>
             <dt>
 
-                <a href="{% url notes_detail note.id %}">{{ note.title }}</a> <span class="small quiet">last edited {{note.modified|timesince}} ago</span>
+                <strong><a href="{% url notes_detail note.id %}">{{ note.title }}</a></strong> <span class="small quiet">- Last edited {{note.modified|timesince}} ago by {{ user.first_name }} {{ user.last_name }}</span>
                 {% if user.is_authenticated %} 
-                    · <span class="small"><a href="{% url notes_update note.id %}">edit</a> · <a href="{% url notes_delete note.id %}">delete</a></span>
+                    <span class="small"> <a href="{% url notes_update note.id %}">edit</a> <a href="{% url notes_delete note.id %}">delete</a></span>
                 {% endif %}
         
             </dt>
-            {# <dd>{{ note.content_html|truncatewords_html:10|safe }}</dd> #}
+            <dd>{{ note.content_html|truncatewords_html:10|safe }}</dd>
         </dl>
     {% endfor %}
 
@@ -24,17 +24,11 @@
         You don't have any notes.
     {% endif %}
     
-    {# http://www.djangrrl.com/post/custom-template-tags-in-django/ #}
+{% endblock %}
+
+{% block sidebar %}
     <h4>Last Updated Note:</h4>
+    {# http://www.djangrrl.com/post/custom-template-tags-in-django/ #}
     {% load tags %}
     {% latestnote %}
-       
-    
-    {# <p>Template Tag Example: Last Updated Note:</p> #}
-    {# <ul> #}
-    {#     {% load tags %} #}
-    {#     {% last_updated_note %}     #}
-    {# </ul> #}
-    
-    
 {% endblock %}

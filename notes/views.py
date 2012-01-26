@@ -7,6 +7,7 @@ from django.contrib.auth.decorators import login_required # for @login_required 
 from django.core.urlresolvers import reverse
  
 from models import Notes
+from forms import NotesForm
 
 # def login_view(request):
 #     if request.method == 'POST':
@@ -27,10 +28,10 @@ from models import Notes
 #         return HttpResponseRedirect(request.META.get('HTTP_REFERER', None))
 #     except KeyError:
 #         return HttpResponseRedirect('/')
- 
+
 def notes_list(request):
     """Show all notes"""
- 
+    
     return object_list(request, 
         queryset=Notes.objects.all().order_by('-modified', 'title'), # https://docs.djangoproject.com/en/dev/ref/models/querysets/#django.db.models.query.QuerySet.order_by
         template_name='notes/list.html',
@@ -53,7 +54,8 @@ def notes_create(request):
     """Create new note"""
  
     return create_object(request,
-        model=Notes,
+        # model=Notes
+        form_class=NotesForm, # Needed to specify form_class instead of model so that the custom date widget for dropdown menu is displayed: https://docs.djangoproject.com/en/dev/ref/generic-views/#django-views-generic-create-update-create-object
         template_name='notes/create.html',
         post_save_redirect=reverse("notes_list")
     )            

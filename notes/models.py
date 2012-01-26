@@ -37,6 +37,19 @@ class Notes(models.Model):
     # display note title in admin
     def __unicode__(self):
         return self.title
+
+# 
+# 
+# class NotesForm(ModelForm):
+#     created = DateField(widget=SelectDateWidget)
+# 
+#     class Meta:
+#         model = Notes
+#         fields = ('title', 'content_markdown', 'created', 'modified')
+#         widgets = {
+#             'created': SelectDateWidget(),
+#             'modified': SelectDateWidget(),
+#         }
     
     # define permalink (not needed?)
     # @permalink

@@ -6,13 +6,13 @@ Last update: Friday, 27 January 2012 at 10:05:13
 */
 
 html {padding-bottom:6em;}
-body {margin:0; border-top:4px solid #c30; font-size: 16px; word-spacing:0.01em; font-family:"droid serif", georgia, serif;}
+body {margin:0; border-top:4px solid #c30; font-size: 16px; word-spacing:0.01em; font-family:"DroidSerifRegular", georgia, serif;}
 
 /* =layout */
 div#header {overflow:auto; width:100%;} /* clear the floats inside the header - http://www.quirksmode.org/css/clearing.html */
-p.breadcrumbs {float:left; width:65%; margin:0; padding:1em 1em 0;}
+p.breadcrumbs {float:left; margin:0; padding:1em 1em 0; color:#999;}
 a.logo {font-size:1.1em;}
-div#nav {float:right; width:25%; text-align:right; padding:1em 1em 0;}
+div#nav {float:right; width:30%; text-align:right; padding:1em 1em 0;}
 div#nav p {margin:0;}
 div#content {padding:1em 1em 0.25em;}
 body#home div#content {width:60%; float:left;}
@@ -29,6 +29,9 @@ h3 {font-size:110%; font-weight:700;}
 h4 {font-size:105%; font-weight:700;}
 h5  {border-bottom:1px dotted #ccc;  padding:1.4em 0 0.5em 0;  margin:0 0 1em 0;  color:#999;  font-weight:normal;  text-transform:uppercase;  letter-spacing:1px;}
 p {font-size:100%; line-height:1.4em;}
+strong {font-family:"DroidSerifBold";}
+strong em {font-family:"DroidSerifBoldItalic";}
+em {font-family:"DroidSerifItalic";}
 code, pre {font-size:85%; line-height:1.3em; font-family:"DroidSansMonoRegular", courier, monospace; line-height:1.4em; max-width:34em;}
 ol {font-size:100%; line-height:1.4em; padding:0 0 0 1.75em;}
 .mono {max-width:10em;}
@@ -37,12 +40,14 @@ a:visited  {color:#497FBF; text-decoration:none;}
 img {display:block; margin:auto;}
 dt {font-weight:700;}
 dl {line-height:1.4em;}
-ul {font-size:100%; line-height:1.4em; list-style-type: disc; padding:0 0 1em 1.65em; margin:0;}
+ul, ol {font-size:100%; line-height:1em; padding:0 0 0 1.65em; margin:0;}
+ol ol {list-style-type:lower-alpha;}
+ol ol ol {list-style-type:lower-roman;}
 /*lh {font-weight:700;} ? */
 li {margin:.5em .5em;  font-weight:400;}
 img {width:50%; height:auto;}
-h1.first  {font-size:400%; letter-spacing: -.14em; margin:0 0 -.1em 0; padding:0 0; color:#d5d5dd;}
-figcaption {margin: 1em 6em; font-family:"droid serif",georgia, serif; font-size:80%;}
+h1.first  {font-size:400%; letter-spacing: -.14em; margin:0 0 -0.1em 0; padding:0 0; color:#d5d5dd;}
+figcaption {margin: 1em 6em; font-family:"DroidSerifRegular",georgia, serif; font-size:80%;}
 .georgia {font-family:Georgia, "Times New Roman", Times, serif;}
 .times {font-family:"Times New Roman", Times, serif;}
 .verdana {font-family:Verdana, Geneva, sans-serif;}

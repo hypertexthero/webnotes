@@ -13,14 +13,14 @@
     
     <form action="" method="post">
         {% csrf_token %}
-
-        <p><input type="submit" value="Save &rarr;" /> or <a href="{% firstof request.META.HTTP_REFERER url notes_detail note.id %}">cancel</a></p>
-
-        {# Reusable form templates: https://docs.djangoproject.com/en/dev/topics/forms/#reusable-form-templates #}
-        {% include "includes/note_form.html" %}
-  
-        <p><input type="submit" value="Save &rarr;" /> or <a href="{% firstof request.META.HTTP_REFERER url notes_detail note.id %}">cancel</a></p>
-        
+        <p><input class="btn" type="submit" value="Save &rarr;" /> or <a class="warning" href="{% firstof request.META.HTTP_REFERER url notes_detail note.id %}">cancel</a></p>
+            {# Reusable form templates: https://docs.djangoproject.com/en/dev/topics/forms/#reusable-form-templates #}
+            {% include "includes/note_form.html" %}
+        <p class="clearboth"><input class="btn" type="submit" value="Save &rarr;" /> or <a class="warning" href="{% firstof request.META.HTTP_REFERER url notes_detail note.id %}">cancel</a></p>
         <p class="floatright"><a class="warning" href="{% url notes_delete note.id %}">delete this note</a></p>
     </form>
+{% endblock %}
+
+{% block footer %}
+    Last modified: {{ note.modified|date:"d F Y" }} at {{ note.modified|date:"H:m A" }}<br />
 {% endblock %}

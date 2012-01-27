@@ -12,17 +12,12 @@
     {# </form> #}
     
     {# Customized form template: https://docs.djangoproject.com/en/dev/topics/forms/#customizing-the-form-template #}
-    
-    {# TODO: #}
-    {#     - apply existing django date picker widget #}
-    {#     - customize content_markdown textarea for size & wmd? - https://docs.djangoproject.com/en/dev/topics/forms/modelforms/#modelform and https://docs.djangoproject.com/en/dev/topics/forms/modelforms/#overriding-the-default-field-types-or-widgets#} 
-    
-    
-{# Reusable form templates: https://docs.djangoproject.com/en/dev/topics/forms/#reusable-form-templates #}
     <form action="" method="post">
         {% csrf_token %}
-        {% include "includes/note_form.html" %}
-        <p><input type="submit" value="Add Note &rarr;" /></p>
+        <p><input class="btn" type="submit" value="Add Note" /> or <a class="warning" href="{% firstof request.META.HTTP_REFERER url notes_detail note.id %}">cancel</a></p>
+            {# Reusable form templates: https://docs.djangoproject.com/en/dev/topics/forms/#reusable-form-templates #}
+            {% include "includes/note_form.html" %}
+        <p class="clearboth"><input class="btn" type="submit" value="Add Note" /> or <a class="warning" href="{% firstof request.META.HTTP_REFERER url notes_detail note.id %}">cancel</a></p>
     </form>
-    
 {% endblock %}
+

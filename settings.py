@@ -3,6 +3,8 @@
 import os
 DIRNAME = os.path.dirname(__file__)
 
+DATE_FORMAT = 'j N Y' # This is used by the SelectDateWidget in django.forms.extras.widgets http://stackoverflow.com/a/6137099/412329
+
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
@@ -16,7 +18,7 @@ MANAGERS = ADMINS
 TIME_ZONE = 'Europe/Rome'
 
 # http://www.i18nguy.com/unicode/language-identifiers.html
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'en-uk'
 
 SITE_ID = 1
 
@@ -26,7 +28,7 @@ USE_I18N = True
 
 # If you set this to False, Django will not format dates, numbers and
 # calendars according to the current locale
-USE_L10N = True
+USE_L10N = False # needed to set this to false to get SelectDateWidget in django.forms.extras.widgets to work http://stackoverflow.com/a/6137099/412329
 
 MEDIA_ROOT = os.path.join(DIRNAME, 'uploads')
 MEDIA_URL = 'http://127.0.0.1/media/'

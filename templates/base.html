@@ -1,26 +1,41 @@
-<html>
+<!DOCTYPE HTML>
+<html lang=en>
 <head>
-    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <meta charset=utf-8>
+    <meta name=viewport content="width=device-width,user-scalable=yes">
+
     <title>{% block headtitle %}{% endblock %}Webnotes</title>
+
+    {# <link href="http://fonts.googleapis.com/css?family=Droid+Sans:400,700" rel="stylesheet" type="text/css"> #}
+    {#     <link href="http://fonts.googleapis.com/css?family=Droid+Sans+Mono" rel="stylesheet" type="text/css"> #}
+    {#     <link href="http://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic" rel="stylesheet" type="text/css"> #}
+
+    <!-- http://paulirish.com/2009/bulletproof-font-face-implementation-syntax/ -->
+    <!-- http://www.fontsquirrel.com/fontface/generator -->
+    <link rel="stylesheet" href="/static/fonts/stylesheet.css" type="text/css" media="screen" title="default" charset="utf-8" />
+    
     <link rel="stylesheet" href="/static/css/notes.css" type="text/css" media="screen" title="default" charset="utf-8" />
     <link rel="stylesheet" href="/static/css/code.css" type="text/css" media="screen" title="default" charset="utf-8" />
+    
     {% block extrahead %}{% endblock %}
 </head>
-<body{% block bodyid %}{% endblock %}>
+
+<body id="{% block bodyid %}{% endblock %}">
 
     <div id="header">
         <p class="breadcrumbs">
-            <strong><a href="{% url notes_list %}">Notes</a></strong> {% block breadcrumbs %}{% endblock %}
+            <strong><a class="logo" title="Homepage." href="{% url notes_list %}">Webnotes</a></strong> {% block breadcrumbs %}{% endblock %}
         </p>
 
         <div id="nav">
             {% if user.is_authenticated %}
-                <p>Welcome <strong>{{ user }}</strong>! <a href="{% url django.contrib.auth.views.logout %}?next={% firstof request.path '/' %}">Logout</a> or <strong><a href="{% url notes_create %}">add a note +</a></strong></p>
+                <p>Hello <strong>{{ user.first_name }} {{ user.last_name }}</strong> – <strong><a class="edit larger" href="{% url notes_create %}">add a note</a></strong> or <a href="{% url django.contrib.auth.views.logout %}?next={% firstof request.path '/' %}">log out</a></p>
             {% else %}
                 {# http://stackoverflow.com/a/1711592/412329 #}
                 {# Alternative redirect technique?: http://stackoverflow.com/a/476720/412329 #}
-                <p><a href="{% url django.contrib.auth.views.login %}?next={% firstof request.path '/' %}">Login</a></p>
+                <p><a class="edit" href="{% url django.contrib.auth.views.login %}?next={% firstof request.path '/' %}">Log in</a></p>
             {% endif %}
+            {% block nav %}{% endblock %}
         </div>
     </div>
     
@@ -41,5 +56,6 @@
         {# <p>The time is {{ the_time }}.</p> #}
         </p>
     </div>
+    {% block extrafoot %}{% endblock %}
 </body>
 </html>

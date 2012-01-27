@@ -1,18 +1,19 @@
 {% extends 'base.html' %}
-
+{% block bodyid %}home{% endblock %}
 {% block content %}
-    {% if note_list %}
-    {% for note in note_list %}
+    {% if latest %} {# the 'latest' variable of the template context is assigned automatically by the django.views.generic.date_based.archive_index generic view - https://docs.djangoproject.com/en/dev/ref/generic-views/#django-views-generic-date-based-archive-index #}
+    {% for note in latest %}
         {# https://docs.djangoproject.com/en/dev/ref/templates/builtins/?from=olddocs#ifchanged #}
         {% ifchanged %}
-            <h2 class="dateline">{{ note.modified|date:"d F Y" }}</h3>
+            <hr />
+            <h2 class="dateline">{{ note.created|date:"d F Y" }}</h2>
         {% endifchanged %}
         <dl>
             <dt>
 
-                <strong><a href="{% url notes_detail note.id %}">{{ note.title }}</a></strong> <span class="small quiet">- Last edited {{note.modified|timesince}} ago by {{ user.first_name }} {{ user.last_name }}</span>
+                <strong><a href="{% url notes_detail note.id %}">{{ note.title }}</a></strong> <span class="small normal quiet">- Last edited {{note.modified|timesince}} ago by {{ user.first_name }} {{ user.last_name }}</span>
                 {% if user.is_authenticated %} 
-                    <span class="small"> <a href="{% url notes_update note.id %}">edit</a> <a href="{% url notes_delete note.id %}">delete</a></span>
+                    <span class="small normal"> <a class="edit" href="{% url notes_update note.id %}">edit</a> <a class="warning" href="{% url notes_delete note.id %}">delete</a></span>
                 {% endif %}
         
             </dt>
@@ -27,8 +28,9 @@
 {% endblock %}
 
 {% block sidebar %}
-    <h4>Last Updated Note:</h4>
     {# http://www.djangrrl.com/post/custom-template-tags-in-django/ #}
+{% if user.is_authenticated %} 
     {% load tags %}
     {% latestnote %}
+{% endif %}
 {% endblock %}

@@ -9,8 +9,9 @@ class Notes(models.Model):
     title   = models.CharField(max_length=255)
     content_markdown = models.TextField('Entry body')
     content_html = models.TextField(editable=False) 
+    # created = models.DateTimeField(default=datetime.datetime.now)
     created = models.DateTimeField(default=datetime.datetime.now)
-    modified = models.DateTimeField(default=datetime.datetime.now)
+    modified = models.DateTimeField(auto_now_add=True, editable=False)
     #automatically add timestamps when object is created
     # created = models.DateTimeField(auto_now_add=True) 
     #automatically add timestamps when object is updated

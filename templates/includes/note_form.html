@@ -41,34 +41,63 @@
 {# </script> #}
 {# {% endblock %} #}
 
+{% block extrahead %}
+    {# WMD Markdown Editor with Preview - required files #}
+    <link rel="stylesheet" type="text/css" href="/static/css/wmd.css"/>
+    <script type="text/javascript" src="/static/js/wmd.js"></script>
+    <script type="text/javascript" src="/static/js/showdown.js"></script>
+{% endblock %}
 
-{{ form.non_field_errors }}
-<fieldset>
-    {{ form.title.errors }}
-    <label for="id_title">Title:</label><br />
-    {# {{ form.title }} #}
-    <input id="id_title" type="text" name="title" value="{{ form.title.value|default:'' }}" maxlength="255" tabindex="1" />
-</fieldset>
 
-<fieldset>
-    {{ form.content_markdown.errors }}
-    <label for="id_content_markdown">Note (Markdown syntax):</label><br />
+<div class="noteswritebox">
+    {{ form.non_field_errors }}
+    <fieldset>
+        {{ form.title.errors }}
+        {# <label for="id_title">Title:</label><br /> #}
+        {# {{ form.title }} #}
+        <input id="id_title" type="text" name="title" value="{{ form.title.value|default:'' }}" maxlength="255" tabindex="1" placeholder="Title…" />
+    </fieldset>
 
-    {# {{ form.content_markdown }} #}
-    {# Keeping presentation in template rather than in modelform widgets: #}
-        {# - https://docs.djangoproject.com/en/dev/topics/forms/#looping-over-the-form-s-fields #}
-        {# - http://stackoverflow.com/a/2152407/412329 #}
-    <textarea id="id_content_markdown" rows="40" cols="80" name="content_markdown" tabindex="2">{{ form.content_markdown.value|default:'' }}</textarea> 
-</fieldset>
+    <fieldset>
+        {{ form.content_markdown.errors }}
+        {# <label for="id_content_markdown" class="quiet">Note: <span class="small">(markdown syntax)</span></label> #}
+        <div id="button_bar"></div>        
+        {# {{ form.content_markdown }} #}
+        {# Keeping presentation in template rather than in modelform widgets: #}
+            {# - https://docs.djangoproject.com/en/dev/topics/forms/#looping-over-the-form-s-fields #}
+            {# - http://stackoverflow.com/a/2152407/412329 #}
+        <textarea placeholder="Note…" id="id_content_markdown" rows="30" cols="80" name="content_markdown" tabindex="2">{{ form.content_markdown.value|default:'' }}</textarea> 
+    </fieldset>
 
-<fieldset>
-    {{ form.created.errors }}
-    <label for="id_created">Created:</label><br />
-    {{ form.created }}
-</fieldset>
+    <fieldset style="margin-bottom:0.8em;" class="quiet">
+        {{ form.created.errors }}
+        <label for="id_created">Published on </label>
+        {{ form.created }}
+    </fieldset>
 
-<fieldset>
-    {{ form.modified.errors }}
-    <label for="id_modified">Modified:</label><br />
-    {{ form.modified }}
-</fieldset>
+</div> {# /.noteswritebox #}
+
+
+<div class="notespreviewbox">
+    <h5>Note Body Preview</h5>
+    <div id="content_rendered_preview"></div>
+    {# <h5>Generated raw HTML <span class="normal">(save to content_html table in database)</span></h5> #}
+    {# <textarea name="content_html" value="" id="content_html_preview" columns="80" rows="40"></textarea> #}
+    {# <input type="hidden" name="notes-html" value="" id="notes-html" /> #}
+</div> <!-- /div.notespreviewbox -->
+    
+{% block extrafoot %}
+{# WMD Markdown Editor with Preview - initialization #}
+<script type="text/javascript">
+setup_wmd({
+	input: "id_content_markdown",
+	button_bar: "button_bar",
+	preview: "content_rendered_preview",
+	output: "content_html",
+    // buttons: "bold italic link image ol ul  heading  undo redo  help",
+    buttons: "bold italic link image ol ul heading  undo redo  help",
+	modifierKeys: false,
+	autoFormatting: false
+});
+</script>    
+{% endblock %}

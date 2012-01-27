@@ -1,3 +1,5 @@
+from django.views.generic.date_based import archive_index
+
 from django.views.generic.list_detail import object_list
 from django.views.generic.list_detail import object_detail
 from django.views.generic.create_update import create_object
@@ -9,34 +11,26 @@ from django.core.urlresolvers import reverse
 from models import Notes
 from forms import NotesForm
 
-# def login_view(request):
-#     if request.method == 'POST':
-#         user = authenticate(username = request.POST['login_username'], password = request.POST['login_password'])
-#         if user is None:
-#             return direct_to_template(request, 'invalid_login.html')
-#             if not user.is_active:
-#                 return direct_to_template(request, 'inactive_account.html')
-#                 login(request, user)
-#                 try:
-#                     return HttpResponseRedirect(request.META.get('HTTP_REFERER', None))
-#                 except KeyError:
-#                     return HttpResponseRedirect('/')
-# 
-# def logout_view(request):
-#     logout(request)
-#     try:
-#         return HttpResponseRedirect(request.META.get('HTTP_REFERER', None))
-#     except KeyError:
-#         return HttpResponseRedirect('/')
-
-def notes_list(request):
+# generic archive_index view to display notes ordered by date and not display ones saved with a future date - https://docs.djangoproject.com/en/dev/ref/generic-views/#django-views-generic-date-based-archive-index
+def notes_list(request): 
     """Show all notes"""
     
-    return object_list(request, 
-        queryset=Notes.objects.all().order_by('-modified', 'title'), # https://docs.djangoproject.com/en/dev/ref/models/querysets/#django.db.models.query.QuerySet.order_by
+    return archive_index(request, 
+        queryset=Notes.objects.all().order_by('-created', 'title'), # https://docs.djangoproject.com/en/dev/ref/models/querysets/#django.db.models.query.QuerySet.order_by
+        date_field='created', # don't forget to set {{ note.created|date:"d F Y" }} in notes/list.html
         template_name='notes/list.html',
-        template_object_name='note'
+        # template_object_name='note',
+        allow_future = False # this is the default, but am keeping it here to remember that it can be set to true for other use cases, such as calendar of upcoming events
     )
+
+# def notes_list(request):
+#     """Show all notes"""
+#     
+#     return object_list(request, 
+#         queryset=Notes.objects.all().order_by('-modified', 'title'), # https://docs.djangoproject.com/en/dev/ref/models/querysets/#django.db.models.query.QuerySet.order_by
+#         template_name='notes/list.html',
+#         template_object_name='note'
+#     )
  
 def notes_detail(request, id):
     """View note detail based on note id"""
@@ -65,7 +59,8 @@ def notes_update(request, id):
     """Update note based on id"""
  
     return update_object(request,
-        model=Notes,
+        # model=Notes
+        form_class=NotesForm, # Needed to specify form_class instead of model so that the custom date widget for dropdown menu is displayed: https://docs.djangoproject.com/en/dev/ref/generic-views/#django-views-generic-create-update-create-object
         object_id=id,
         template_name='notes/update.html',
         post_save_redirect=reverse("notes_list"),

@@ -1,23 +1,11 @@
 {# https://docs.djangoproject.com/en/dev/topics/auth/#django.contrib.auth.views.login #}
 
-{# {% extends 'base.html' %} #}
+{% extends 'base.html' %}'
+{% block headtitle %}Login - {% endblock %}
 
-<html>
-<head>
-    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-    <title>Login - Webnotes</title>
-    <link rel="stylesheet" href="/static/css/notes.css" type="text/css" media="screen" title="default" charset="utf-8" />
-</head>
+{% block breadcrumbs %}/ Login{% endblock %}
 
-<body>
-    
-    <p class="breadcrumbs">
-        <strong><a href="{% url notes_list %}">Notes List</a></strong> / Login
-    </p>
-
-{% block content %} 
-<div id="nav">
-
+{% block nav %}
     {% if form.errors %}
         <p>Your username and password didn't match. Please try again.</p>
     {% endif %}
@@ -29,8 +17,4 @@
         <input type="submit" value="Login" />
         <input type="hidden" name="next" value={{ next }} />
     </form>
-
-</div> {# end #nav #}
 {% endblock %}
-</body>
-</html>

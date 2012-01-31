@@ -28,34 +28,36 @@
         </p>
 
         <div id="nav">
+            {% block nav %}
             {% if user.is_authenticated %}
-                <p>Hello <strong>{{ user.first_name }} {{ user.last_name }}</strong> – <strong><a class="edit larger" href="{% url notes_create %}">add a note</a></strong> or <a href="{% url django.contrib.auth.views.logout %}?next={% firstof request.path '/' %}">log out</a></p>
+                <p>Hello, <strong>{{ user.first_name }} {{ user.last_name }}</strong>! <strong><a class="edit larger" href="{% url notes_create %}">Add a note</a></strong> or <a href="{% url django.contrib.auth.views.logout %}?next={% firstof request.path '/' %}">log out</a>.</p>
             {% else %}
                 {# http://stackoverflow.com/a/1711592/412329 #}
                 {# Alternative redirect technique?: http://stackoverflow.com/a/476720/412329 #}
                 <p><a class="edit" href="{% url django.contrib.auth.views.login %}?next={% firstof request.path '/' %}">Log in</a></p>
             {% endif %}
-            {% block nav %}{% endblock %}
-        </div>
+            {% endblock %}
+        </div> {# / #nav #}
     </div>
     
     <div id="content">
         {% block content %}{% endblock %}
-    </div>
+    </div> {# / #content #}
     
     <div id="sidebar">
         {% block sidebar %}{% endblock %}
-    </div>
+    </div> {# / #sidebar #}
     
     <div id="footer">
         <p>
         {% block footer %}{% endblock %}
+        <a href="{% url notes_archive %}">Archive of Notes</a><br />
         Django version: {{ django_version }}
         {# {% load tags %} #}
         {# {% get_current_time "%Y-%m-%d %I:%M %p" as the_time %} #}
         {# <p>The time is {{ the_time }}.</p> #}
         </p>
-    </div>
+    </div> {# / #footer #}
     {% block extrafoot %}{% endblock %}
 </body>
 </html>

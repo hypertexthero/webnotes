@@ -23,6 +23,17 @@ def notes_list(request):
         allow_future = False # this is the default, but am keeping it here to remember that it can be set to true for other use cases, such as calendar of upcoming events
     )
 
+def notes_archive(request): 
+    """Archive of all notes"""
+
+    return archive_index(request, 
+        queryset=Notes.objects.all().order_by('-created', 'title'), # https://docs.djangoproject.com/en/dev/ref/models/querysets/#django.db.models.query.QuerySet.order_by
+        date_field='created', # don't forget to set {{ note.created|date:"d F Y" }} in notes/list.html
+        template_name='notes/archive.html',
+        # template_object_name='note',
+        allow_future = False # this is the default, but am keeping it here to remember that it can be set to true for other use cases, such as calendar of upcoming events
+    )
+
 # def notes_list(request):
 #     """Show all notes"""
 #     

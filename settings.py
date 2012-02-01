@@ -3,7 +3,11 @@
 import os
 DIRNAME = os.path.dirname(__file__)
 
-DATE_FORMAT = 'j N Y' # This is used by the SelectDateWidget in django.forms.extras.widgets http://stackoverflow.com/a/6137099/412329
+TIME_FORMAT = 'H-i-s'
+DATE_FORMAT = 'Y-F-j'# This is used by the SelectDateWidget in django.forms.extras.widgets http://stackoverflow.com/a/6137099/412329
+DATETIME_FORMAT = 'Y-F-j H-i-s' 
+CACHE_MIDDLEWARE_ANONYMOUS_ONLY = True # https://docs.djangoproject.com/en/dev/topics/cache/#the-per-site-cache
+
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG

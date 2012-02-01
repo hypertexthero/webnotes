@@ -1,4 +1,10 @@
-from webnotes.notes.models import Notes
+from webnotes.notes.models import Note
 from django.contrib import admin
 
-admin.site.register(Notes)
+class NoteAdmin(admin.ModelAdmin):
+    # fields = ('title', 'url', 'created')
+    list_display = ('title', 'kind', 'url', 'created', 'modified')
+    # date_hierarchy = 'modified'
+    # list_filter = ('title', 'kind', 'url', 'created', 'modified')
+
+admin.site.register(Note, NoteAdmin)

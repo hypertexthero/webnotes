@@ -3,11 +3,21 @@ from django.db.models import permalink
 from markdown import markdown
 import datetime
 from typogrify.templatetags.typogrify import typogrify
- 
-class Notes(models.Model):
+
+class Note(models.Model):
+    
+    KIND = (
+        ('L', 'Link'),
+        ('A', 'Article'),
+    )
+    
     """Model to save our note"""
     title   = models.CharField(max_length=255)
-    content_markdown = models.TextField('Entry body')
+    kind = models.CharField(max_length=1, choices=KIND, default=1, help_text="Is this a link to other content or an original article?")
+    # TODO: linkurl field and link/article slug
+    url = models.URLField(blank=True, help_text="The link URL")
+    # slug = models.SlugField(unique_for_date='pub_date', help_text='Must be unique for the publication date.')
+    content_markdown = models.TextField(blank=True, verbose_name='Note (markdown syntax)')
     content_html = models.TextField(editable=False) 
     # created = models.DateTimeField(default=datetime.datetime.now)
     created = models.DateTimeField(default=datetime.datetime.now)
@@ -33,7 +43,7 @@ class Notes(models.Model):
         self.content_html = typogrify(markdown(self.content_markdown, ['footnotes', 'codehilite']))
         # self.content_html = markdown(self.content_markdown)
         self.modified = datetime.datetime.now()
-        super(Notes, self).save()
+        super(Note, self).save()
 
     # display note title in admin
     def __unicode__(self):
@@ -41,11 +51,11 @@ class Notes(models.Model):
 
 # 
 # 
-# class NotesForm(ModelForm):
+# class NoteForm(ModelForm):
 #     created = DateField(widget=SelectDateWidget)
 # 
 #     class Meta:
-#         model = Notes
+#         model = Note
 #         fields = ('title', 'content_markdown', 'created', 'modified')
 #         widgets = {
 #             'created': SelectDateWidget(),
@@ -63,9 +73,9 @@ class Notes(models.Model):
 # http://stackoverflow.com/questions/4190386/how-to-add-extra-fields-using-django-forms-textarea
 # from django.forms import ModelForm, Textarea
 
-# class NotesForm(ModelForm):
+# class NoteForm(ModelForm):
 #     class Meta:
-#         model = Notes
+#         model = Note
 #         fields = ('title', 'content_markdown', 'created', 'modified')
 #         widgets = {
 #             'content_markdown': Textarea(attrs={'cols': 80, 'rows': 40}),

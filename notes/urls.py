@@ -2,9 +2,9 @@ from django.conf.urls.defaults import *
  
 import views
 
-# from notes.models import Notes 
+# from notes.models import Note 
 # entry_info_dict = { 
-#     'queryset': Notes.objects.all(), 
+#     'queryset': Note.objects.all(), 
 #     'date_field': 'modified', 
 #     'template_name': 'notes/list.html',
 #     'allow_future': False,

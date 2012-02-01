@@ -1,11 +1,11 @@
 # http://www.mechanicalgirl.com/post/custom-template-tags-in-django/
-from webnotes.notes.models import Notes
+from webnotes.notes.models import Note
 from django import template
 
 register = template.Library()
 
 def latestnote(context): # need 'context' in here otherwise get 'list index out of range' error
-    notes = Notes.objects.all().order_by('-modified', 'title')[:1]
+    notes = Note.objects.all().order_by('-modified', 'title')[:1]
     # http://stackoverflow.com/a/4338108/412329 - passing the user variable into the context
     user = context['request'].user
     return {'notes': notes, 'user': user}

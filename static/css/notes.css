@@ -38,11 +38,11 @@ strong {font-family:"DroidSerifBold";}
 strong em {font-family:"DroidSerifBoldItalic";}
 em {font-family:"DroidSerifItalic";}
 code, pre {font-size:85%; line-height:1.3em; font-family:"DroidSansMonoRegular", courier, monospace; line-height:1.4em; max-width:100%; overflow:auto;}
-pre {border:1px solid #ddd; padding:0.5em;}
 ol {font-size:100%; line-height:1.4em; padding:0 0 0 1.75em;}
 .mono {max-width:10em;}
 a:link {color:#0469B3; text-decoration:none;}
 a:visited  {color:#497FBF; text-decoration:none;}
+a.plink {font-size:0.9em; color:#999;}
 img {display:block; margin:auto;}
 dt {font-weight:700;}
 dl {line-height:1.4em;}
@@ -90,6 +90,7 @@ fieldset + fieldset {border-top:none;}
 fieldset input {width:98%; padding:0.5em;}
 fieldset textarea {padding:0.5em; overflow:auto; width:98%; min-height:60em; font-size:75%; font-family:"DroidSansMonoRegular", courier, monospace; line-height:1.4em;} /* http://www.quirksmode.org/css/clearing.html */
 textarea#notes-html {background:#eee !important;}
+label {color:#999;}
 div.notescontainer {border:1px solid #ccc; padding:0 1em 1em; width:100%;}
 div.noteswritebox {float:left; width:47%; margin-right:1em;}
 div.notespreviewbox {float:left; width:47%;}
@@ -102,11 +103,15 @@ div#notes-button-bar {background:#fff;}
 body#detail h1 {margin-bottom:0;}
 .errorlist, .warning {color:#c00 !important;}
 .edit {color:#009337 !important;}
+.hide {display:none !important;}
 .editing {}
 .small, div.footnote {font-size:0.9em;}
+.smaller {font-size:0.8em;}
 .larger {font-size:1.1em; letter-spacing:-0.1em;}
 .normal {font-weight:normal;}
 .quiet {color:#999;}
+.helptext {color:#999; font-size:0.9em;}
 .floatright {float:right;}
 .floatleft {float:left;}
 .clearboth {clear:both;}
+pre.articlebreak {padding:0; margin:5em 0; font-family:monospace; color:#afa99f; background:none;}

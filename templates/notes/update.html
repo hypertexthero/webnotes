@@ -28,7 +28,7 @@
             {% csrf_token %}
             <p><input class="btn" type="submit" value="Save &rarr;" /> or <a class="warning" href="{% firstof request.META.HTTP_REFERER url notes_detail note.id %}">cancel</a></p>
                 {% include "includes/note_form.html" %}
-            <p class="clearboth"><input class="btn" type="submit" value="Save &rarr;" /> or <a class="warning" href="{% firstof request.META.HTTP_REFERER url notes_detail note.id %}">cancel</a></p>
+            <p class="clearboth"><input class="btn" type="submit" value="Save &rarr;" tabindex="4" /> or <a class="warning" href="{% firstof request.META.HTTP_REFERER url notes_detail note.id %}">cancel</a></p>
             <p class="floatright"><a class="warning" href="{% url notes_delete note.id %}">delete this note</a></p>
         </form>
 {% endblock %}

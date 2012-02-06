@@ -31,7 +31,7 @@
 {#     <p><input type="submit" value="Continue &rarr;" /></p> #}
 {# </form> #}
 
-<p class="clearboth"><input class="btn" type="submit" value="Add Note" /> or <a class="warning" href="{% firstof request.META.HTTP_REFERER url notes_detail note.id %}">cancel</a></p>
+<p class="clearboth"><input class="btn" type="submit" value="Add Note" tabindex="4" /> or <a class="warning" href="{% firstof request.META.HTTP_REFERER url notes_detail note.id %}">cancel</a></p>
 </form>
 
 {% endblock %}

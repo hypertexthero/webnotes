@@ -68,7 +68,10 @@
                     $url.attr('disabled', 'disabled').val('').hide();
                 }
             }).trigger('change'); // added trigger to calculate initial state
-            
+            // 
+            // $("input[type=text]").click(function() { // automatically select text on click - http://stackoverflow.com/a/3150370/412329
+            //    $(this).select();
+            // });
         });
 </script>
 {% endblock %}
@@ -83,7 +86,7 @@
         <input id="id_title" type="text" name="title" value="{{ form.title.value|default:'' }}" maxlength="255" tabindex="1" placeholder="Title…" />
 
             <br />
-          <label for="id_kind">Kind: <span class="small">link to other content or an original article?</span></label>
+          <label for="id_kind">Kind: <span class="smaller">(link to other content or original article?)</span></label>
               <br />
                           
               {# <select name="kind" id="id_kind" class="floatleft" style="width:15%; margin-right:1em;"> #}
@@ -118,7 +121,7 @@
 
     <fieldset>
         {{ form.content_markdown.errors }}
-        <label for="id_content_markdown">Note: <span class="small">(markdown syntax)</span></label>
+        <label for="id_content_markdown">Note: <span class="smaller">(markdown syntax)</span></label>
         <div id="button_bar"></div>        
         {# {{ form.content_markdown }} #}
         {# Keeping presentation in template rather than in modelform widgets: #}

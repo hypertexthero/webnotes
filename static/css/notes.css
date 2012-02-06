@@ -45,7 +45,7 @@ a:visited  {color:#497FBF; text-decoration:none;}
 a.plink {font-size:0.9em; color:#999;}
 img {display:block; margin:auto;}
 dt {font-weight:700;}
-dl {line-height:1.4em;}
+dl {line-height:1.4em; font-size:100%;}
 ul, ol {font-size:100%; line-height:1em; padding:0 0 0 1.65em; margin:0;}
 ol ol {list-style-type:lower-alpha;}
 ol ol ol {list-style-type:lower-roman;}

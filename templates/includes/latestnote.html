@@ -7,7 +7,7 @@
     
     <div id="lastupdatenote">
     {% for note in notes %}
-        <h1 class="first"><a href="/notes/{{ note.id }}">{{ note.title }}</a> <span class="normal small"></h1>
+        <h1 class="first"><a href="/notes/archive/{{ note.id }}">{{ note.title }}</a> <span class="normal small"></h1>
         {{ note.content_html|safe }}
     {% endfor %}
     </div>

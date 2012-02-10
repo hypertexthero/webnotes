@@ -6,21 +6,21 @@ Last update: Monday, 30 January 2012 at 09:53:48
 */
 
 html {padding-bottom:6em;}
-body {margin:0; border-top:4px solid #c30; font-size: 16px; word-spacing:0.01em; font-family:"DroidSerifRegular", georgia, serif;}
+body {margin:0; border-top:4px solid #6CF; font-size: 16px; word-spacing:0.01em; font-family:"DroidSerifRegular", georgia, serif;}
 
 /* =layout */
 div#header {overflow:auto; width:100%;} /* clear the floats inside the header - http://www.quirksmode.org/css/clearing.html */
 p.breadcrumbs {float:left; margin:0; padding:1em 1em 0; color:#999;}
 a.logo {font-size:1.1em;}
-div#nav {float:right; width:30%; text-align:right; padding:1em 1em 0;}
+div#nav {float:right; width:30%; text-align:right; padding:1em; line-height:2em;}
 div#nav p {margin:0;}
 div#content {padding:1em 1em 0.25em;}
 body#home div#content, body#archive div#content {width:60%; float:left;}
 div#sidebar {float:right; width:30%; padding:1em 1em 0.25em;}
-div#lastupdate {border:1px solid #ddd; padding:0 1em; margin-bottom:1em;}
+div#lastupdate {border:1px solid #ddd; padding:0 1em; margin-bottom:1em; font-size:0.9em;}
 div#lastupdatenote * {color:#999;}
-div#lastupdatenote h1.first a {color:#0469B3;}
-div#footer {font-size:0.9em; border-top:1px solid #ddd; padding:0 1em 1em; clear:both; color:#999;}
+div#lastupdatenote h1.first a {color:#497FBF;}
+div#footer {font-size:0.9em; border-top:1px solid #eee; padding:0 1em 1em; clear:both; color:#999;}
 
 /* =typography */
 hr {display:block; position:relative; padding:0; margin:1em auto; width:100%; clear:both; border:none; border-top:1px solid #ddd; border-bottom:1px solid #FFF; font-size:1px; line-height:0; overflow:visible;}
@@ -85,6 +85,7 @@ figcaption {margin: 1em 6em; font-family:"DroidSerifRegular",georgia, serif; fon
 .arial {font-family:Arial, Helvetica, sans-serif;}
 
 /* =forms */
+input {padding:0.5em;}
 fieldset {border:1px solid #ddd; padding:0.5em 0.5em;}
 fieldset + fieldset {border-top:none;}
 fieldset input {width:98%; padding:0.5em;}

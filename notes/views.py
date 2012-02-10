@@ -63,7 +63,8 @@ def notes_create(request):
         form_class=NoteForm, # Needed to specify form_class instead of model so that the custom date widget for dropdown menu is displayed: https://docs.djangoproject.com/en/dev/ref/generic-views/#django-views-generic-create-update-create-object
         # extra_context={'kind': 'kind', 'url': 'url'},
         template_name='notes/create.html',
-        post_save_redirect=reverse("notes_list")
+        # post_save_redirect=reverse("notes_list")
+        post_save_redirect="/notes/archive/%(id)s/" # todo: add object.get_absolute_url() to models.py
     )            
 
 @login_required
@@ -76,7 +77,7 @@ def notes_update(request, id):
         object_id=id,
         template_name='notes/update.html',
         # extra_context={'kind': 'kind', 'url': 'url'},
-        post_save_redirect=reverse("notes_list"),
+        post_save_redirect="/notes/archive/%(id)s/", # todo: add object.get_absolute_url() to models.py
         template_object_name='note' # so I can write {{ note.title }} in templates/notes/update.html (otherwise I would need to write {{ object.title }})
     )            
 
@@ -118,9 +119,11 @@ from django.db.models import Q
 
 # rewritten so /search/ URL can be accessed directly:
 
-def search(request):
+def search(request):    
     query = request.GET.get('q', '') # both /search/ and /search/?q=query work
     results = []
+    # http://stackoverflow.com/a/4338108/412329 - passing the user variable into the context
+    user = request.user
     if query:
         # INSTEAD OF THIS:
         # title_results = Note.objects.filter(title__icontains=query)
@@ -130,5 +133,6 @@ def search(request):
         results = Note.objects.filter(Q(title__icontains=query)|Q(content_html__icontains=query)).distinct()
     return render_to_response('notes/search.html',
         {   'query': query, 
-            'results': results })
-
+            'results': results,
+            'user': user
+             })

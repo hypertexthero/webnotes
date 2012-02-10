@@ -13,7 +13,8 @@
         {% endifchanged %}
 
                 <p>
-                    <a href="{% url notes_detail note.id %}" rel="bookmark">{{ note.title }}</a>
+                    <a href="{% url notes_detail note.id %}" rel="bookmark">{{ note.title }}</a> 
+                    {% if note.kind == "A" %}<strong class="small quiet">Original Article</strong> {% else %}{% endif %} {# / if.note.kind == "A" #}
                     <span class="small quiet">
                             {{ note.created|date:"d F Y" }}
                     </span>

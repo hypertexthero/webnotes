@@ -91,3 +91,44 @@ def notes_delete(request, id):
         template_name='notes/delete.html',
         post_delete_redirect=reverse("notes_list")
     )
+
+# =Search
+
+# from django.http import HttpResponse 
+# from django.template import loader, Context
+# 
+# def search(request): 
+#     query = request.GET['q']
+#     results = Note.objects.filter(content_html__icontains=query)
+#     template = loader.get_template('notes/search.html')
+#     context = Context({ 'query': query, 'results': results })
+#     response = template.render(context)
+#     return HttpResponse(response)
+
+# or use django's render_to_response shortcut:
+
+from django.shortcuts import render_to_response
+from django.db.models import Q
+
+# def search(request):
+#     query = request.GET['q']
+#     return render_to_response('notes/search.html',
+#         {   'query': query, 
+#             'results': Note.objects.filter(content_html__icontains=query) })
+
+# rewritten so /search/ URL can be accessed directly:
+
+def search(request):
+    query = request.GET.get('q', '') # both /search/ and /search/?q=query work
+    results = []
+    if query:
+        # INSTEAD OF THIS:
+        # title_results = Note.objects.filter(title__icontains=query)
+        # results = Note.objects.filter(content_html__icontains=query)
+        # DO THIS avoid duplicate results when query word is both in title and content_html:
+        # http://stackoverflow.com/questions/744424/django-models-how-to-filter-out-duplicate-values-by-pk-after-the-fact
+        results = Note.objects.filter(Q(title__icontains=query)|Q(content_html__icontains=query)).distinct()
+    return render_to_response('notes/search.html',
+        {   'query': query, 
+            'results': results })
+

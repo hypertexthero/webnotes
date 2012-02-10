@@ -20,5 +20,6 @@ urlpatterns = patterns('',
     url(r'^archive/(?P<id>\d+)/$', views.notes_detail, name='notes_detail'),  
     url(r'^new/$', views.notes_create, name='notes_create'),  
     url(r'^update/(?P<id>\d+)/$', views.notes_update, name='notes_update'),  
-    url(r'^delete/(?P<id>\d+)/$', views.notes_delete, name='notes_delete'),  
+    url(r'^delete/(?P<id>\d+)/$', views.notes_delete, name='notes_delete'), 
+    url(r'^search/$', views.search, name="notes_search"),
 )

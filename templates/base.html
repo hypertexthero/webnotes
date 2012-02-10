@@ -50,8 +50,12 @@
     
     <div id="footer">
         <p>
-        {% block footer %}{% endblock %}
-        <a href="{% url notes_archive %}">Archive of Notes</a><br />
+        {% block footer %}
+        
+        {% endblock %}
+
+        {% include "includes/search_form.html" %}
+
         Django version: {{ django_version }}
         {# {% load tags %} #}
         {# {% get_current_time "%Y-%m-%d %I:%M %p" as the_time %} #}

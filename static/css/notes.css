@@ -6,7 +6,7 @@ Last update: Monday, 30 January 2012 at 09:53:48
 */
 
 html {padding-bottom:6em;}
-body {margin:0; border-top:4px solid #6CF; font-size: 16px; word-spacing:0.01em; font-family:"DroidSerifRegular", georgia, serif;}
+body {margin:0; border-top:4px solid #6CF; font-size: 16px; word-spacing:0.01em; font-family:georgia, serif;} /*"DroidSerifRegular", */
 
 /* =layout */
 div#header {overflow:auto; width:100%;} /* clear the floats inside the header - http://www.quirksmode.org/css/clearing.html */

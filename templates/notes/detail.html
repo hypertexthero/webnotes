@@ -19,11 +19,11 @@
         {#  #}
 
         {% if note.kind == "A" %}
-        <pre class="articlebreak">
-             __|__
-        -------O-------
-            o´   `o
-        </pre>
+        {# <pre class="articlebreak"> #}
+        {#      __|__ #}
+        {# -------O------- #}
+        {#     o´   `o #}
+        {# </pre> #}
         <h1 class="first">
         <a href="{% url notes_detail note.id %}">{{ note.title }}</a>
         {% if user.is_authenticated %} 
@@ -32,11 +32,11 @@
         {% endif %}
         </h1>
         {{ note.content_html|safe }}            
-        <pre class="articlebreak">
-             __|__
-        -------O-------
-            o´   `o
-        </pre>
+        {# <pre class="articlebreak"> #}
+        {#      __|__ #}
+        {# -------O------- #}
+        {#     o´   `o #}
+        {# </pre> #}
 
         {% else %}
 

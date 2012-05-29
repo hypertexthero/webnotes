@@ -12,7 +12,7 @@ class Note(models.Model):
     )
     
     """Model to save our note"""
-    title   = models.CharField(max_length=255)
+    title = models.CharField(max_length=255)
     kind = models.CharField(max_length=1, choices=KIND, default=1, help_text="Is this a link to other content or an original article?")
     # TODO: linkurl field and link/article slug
     url = models.URLField(blank=True, help_text="The link URL")
@@ -40,7 +40,7 @@ class Note(models.Model):
             # http://freewisdom.org/projects/python-markdown/CodeHilite
             # http://freewisdom.org/projects/python-markdown/Footnotes
             # typogrify - http://code.google.com/p/typogrify/ and http://djangosnippets.org/snippets/381/
-        self.content_html = typogrify(markdown(self.content_markdown, ['footnotes', 'codehilite']))
+        self.content_html = typogrify(markdown(self.content_markdown, ['footnotes', 'tables', 'nl2br', 'codehilite']))
         # self.content_html = markdown(self.content_markdown)
         self.modified = datetime.datetime.now()
         super(Note, self).save()

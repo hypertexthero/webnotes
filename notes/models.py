@@ -49,34 +49,35 @@ class Note(models.Model):
     def __unicode__(self):
         return self.title
 
-# 
-# 
-# class NoteForm(ModelForm):
-#     created = DateField(widget=SelectDateWidget)
-# 
-#     class Meta:
-#         model = Note
-#         fields = ('title', 'content_markdown', 'created', 'modified')
-#         widgets = {
-#             'created': SelectDateWidget(),
-#             'modified': SelectDateWidget(),
-#         }
+
+# http://djangosnippets.org/snippets/2047/
+# TODO: http://www.michelepasin.org/techblog/2009/08/06/representing-hierarchical-data-with-django-and-mptt/
+from django.contrib.contenttypes.models import ContentType
+from django.core.urlresolvers import reverse
+
+class MenuItemManager(models.Manager):
+    def get_query_set(self):
+        return super(MenuItemManager, self).get_query_set().order_by("order", "id")
+
+class MenuItem(models.Model):
+    name = models.CharField(max_length=100, blank=True, verbose_name="Name")
+    order = models.IntegerField(blank = True, null = True)
     
-    # define permalink (not needed?)
-    # @permalink
-    # def get_absolute_url(self):
-    #     # return ('collection_detail', None, {'object_id': self.id})
-    #     return ("note_permalink", (), {'id': self.id})
+    objects = MenuItemManager()
+    order_field = 'order' # You can specify your own field for sorting, but it's 'order' by default
 
+    class Meta:
+        db_table = u"menu"
+    
+    def __unicode__(self):
+        return u"%s" % self.name
+        
+    def order_link(self):
+        model_type_id = ContentType.objects.get_for_model(self.__class__).id
+        obj_id = self.id
+        kwargs = {"model_type_id": model_type_id}
+        url = reverse("admin_order", kwargs=kwargs)
+        return '<a href="%s" class="order_link">%s</a>' % (url, str(self.pk) or '')
+    order_link.allow_tags = True
+    order_link.short_description = 'Order' # If you change this you should change admin_sorting.js too
 
-# Do I want to do all this just to set the textarea attributes? Or find another way?
-# http://stackoverflow.com/questions/4190386/how-to-add-extra-fields-using-django-forms-textarea
-# from django.forms import ModelForm, Textarea
-
-# class NoteForm(ModelForm):
-#     class Meta:
-#         model = Note
-#         fields = ('title', 'content_markdown', 'created', 'modified')
-#         widgets = {
-#             'content_markdown': Textarea(attrs={'cols': 80, 'rows': 40}),
-#         }

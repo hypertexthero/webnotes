@@ -22,4 +22,5 @@ urlpatterns = patterns('',
     url(r'^update/(?P<id>\d+)/$', views.notes_update, name='notes_update'),  
     url(r'^delete/(?P<id>\d+)/$', views.notes_delete, name='notes_delete'), 
     url(r'^search/$', views.search, name="notes_search"),
+    url(r'^order/(?P<model_type_id>\d+)/$', views.order, {}, 'admin_order'), # http://djangosnippets.org/snippets/2047/
 )

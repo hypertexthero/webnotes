@@ -136,3 +136,36 @@ def search(request):
             'results': results,
             'user': user
              })
+
+
+# http://djangosnippets.org/snippets/2047/
+from django.http import HttpResponseRedirect, HttpResponse
+from django.contrib.contenttypes.models import ContentType
+
+def order(request, model_type_id=None):
+  if not request.is_ajax() or not request.method == "POST":
+      return HttpResponse("BAD")
+  
+  try:
+      indexes = request.POST.get('indexes', []).split(",")
+      
+      klass = ContentType.objects.get(id=model_type_id).model_class()
+      order_field = getattr(klass, 'order_field', 'order')
+      
+      objects_dict = dict([(obj.pk, obj) for obj in klass.objects.filter(pk__in=indexes)])
+      min_index = min(objects_dict.values(), key=lambda x: getattr(x, order_field))
+      min_index = getattr(min_index, order_field) or 0
+      for index in indexes:
+        obj = objects_dict[int(index)]
+        setattr(obj, order_field, min_index)
+        obj.save()
+        min_index += 1
+      
+  except IndexError:
+      pass
+  except klass.DoesNotExist:
+      pass
+  except AttributeError:
+      pass
+  
+  return HttpResponse()

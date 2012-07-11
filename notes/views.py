@@ -50,7 +50,8 @@ def notes_detail(request, id):
         queryset=Note.objects.all(),
         object_id=id,
         template_name='notes/detail.html',
-        template_object_name='note' # so I can write {{ note.title }} in templates/notes/detail.html (otherwise I would need to write {{ object.title }})
+        template_object_name='note', # so I can write {{ note.title }} in templates/notes/detail.html (otherwise I would need to write {{ object.title }})
+        extra_context={'slug': 'slug'},
     )
 
 # see also this alternative: http://djangosnippets.org/snippets/966/
@@ -64,7 +65,7 @@ def notes_create(request):
         # extra_context={'kind': 'kind', 'url': 'url'},
         template_name='notes/create.html',
         # post_save_redirect=reverse("notes_list")
-        post_save_redirect="/notes/archive/%(id)s/" # todo: add object.get_absolute_url() to models.py
+        post_save_redirect="/notes/%(id)s/" # todo: add object.get_absolute_url() to models.py
     )            
 
 @login_required
@@ -77,7 +78,7 @@ def notes_update(request, id):
         object_id=id,
         template_name='notes/update.html',
         # extra_context={'kind': 'kind', 'url': 'url'},
-        post_save_redirect="/notes/archive/%(id)s/", # todo: add object.get_absolute_url() to models.py
+        post_save_redirect="/notes/%(id)s/", # todo: add object.get_absolute_url() to models.py
         template_object_name='note' # so I can write {{ note.title }} in templates/notes/update.html (otherwise I would need to write {{ object.title }})
     )            
 

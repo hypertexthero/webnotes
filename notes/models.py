@@ -3,6 +3,7 @@ from django.db.models import permalink
 from markdown import markdown
 import datetime
 from typogrify.templatetags.typogrify import typogrify
+from django.template.defaultfilters import slugify
 
 class Note(models.Model):
     
@@ -16,7 +17,7 @@ class Note(models.Model):
     kind = models.CharField(max_length=1, choices=KIND, default=1, help_text="Is this a link to other content or an original article?")
     # TODO: linkurl field and link/article slug
     url = models.URLField(blank=True, help_text="The link URL")
-    # slug = models.SlugField(unique_for_date='pub_date', help_text='Must be unique for the publication date.')
+    slug = models.SlugField(unique=True, help_text="Suggested value automatically generated from title. Must be unique.")
     content_markdown = models.TextField(blank=True, verbose_name='Note (markdown syntax)')
     content_html = models.TextField(editable=False) 
     # created = models.DateTimeField(default=datetime.datetime.now)
@@ -31,7 +32,7 @@ class Note(models.Model):
     class Meta:
         ordering = ['modified']
         verbose_name_plural = "notes"
-
+    
     # TODO: Combine django static generator in ~/django_projects/victoreskinazi.com with the functionality below so we are serving static files in HTML on server and Markdown and HTML columns in database. Also try to find a way to have static files in Markdown format on the server.
     # https://code.djangoproject.com/wiki/UsingMarkup
     def save(self):
@@ -44,6 +45,10 @@ class Note(models.Model):
         # self.content_html = markdown(self.content_markdown)
         self.modified = datetime.datetime.now()
         super(Note, self).save()
+
+    @models.permalink
+    def get_absolute_url(self):
+        return ('notes_detail', (), { 'slug': self.slug })
 
     # display note title in admin
     def __unicode__(self):

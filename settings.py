@@ -62,12 +62,16 @@ TEMPLATE_LOADERS = (
     # 'django.template.loaders.app_directories.load_template_source',
 )
 
+import middleware
+
 MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+    # display SQL queries in terminal - http://djangosnippets.org/snippets/290/
+    'webnotes.middleware.sql.SqlPrintingMiddleware',
     # 'webnotes.middleware.LoginFormMiddleware', # required to have login form on every page - http://stackoverflow.com/questions/2734055/putting-a-django-login-form-on-every-page
 )
 

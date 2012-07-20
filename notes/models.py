@@ -86,3 +86,6 @@ class MenuItem(models.Model):
     order_link.allow_tags = True
     order_link.short_description = 'Order' # If you change this you should change admin_sorting.js too
 
+# https://docs.djangoproject.com/en/dev/faq/models/#how-can-i-see-the-raw-sql-queries-django-is-running
+# from django.db import connection
+# print connection.queries

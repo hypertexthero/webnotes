@@ -9,6 +9,7 @@ class NoteAdmin(admin.ModelAdmin):
 
 admin.site.register(Note, NoteAdmin)
 
+# Drag and drop reordering of menu items
 # http://djangosnippets.org/snippets/2047/
 class MenuItemAdmin(admin.ModelAdmin):
     list_display = ('id', 'name', 'order_link')

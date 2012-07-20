@@ -138,6 +138,7 @@ def search(request):
             'user': user
              })
 
+# Drag and drop reordering of menu items
 
 # http://djangosnippets.org/snippets/2047/
 from django.http import HttpResponseRedirect, HttpResponse

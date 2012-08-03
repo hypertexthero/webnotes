@@ -1,4 +1,4 @@
-from webnotes.notes.models import Note
+from models import Note
 from django.contrib import admin
 
 class NoteAdmin(admin.ModelAdmin):

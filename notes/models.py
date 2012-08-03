@@ -2,7 +2,7 @@ from django.db import models
 from django.db.models import permalink
 from markdown import markdown
 import datetime
-from typogrify.templatetags.typogrify import typogrify
+from typogrify.templatetags.typogrify_tags import typogrify
 
 class Note(models.Model):
     

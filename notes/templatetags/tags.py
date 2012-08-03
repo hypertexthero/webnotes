@@ -1,5 +1,5 @@
 # http://www.mechanicalgirl.com/post/custom-template-tags-in-django/
-from webnotes.notes.models import Note
+from notes.models import Note
 from django import template
 
 register = template.Library()

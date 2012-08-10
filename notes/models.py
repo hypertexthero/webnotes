@@ -1,8 +1,18 @@
 from django.db import models
 from django.db.models import permalink
-from markdown import markdown
 import datetime
+
+from markdown import markdown
 from typogrify.templatetags.typogrify_tags import typogrify
+
+# defining html sanitizer to subsequently use in content_markdown to content_html conversion of user content at post save
+# http://code.google.com/p/html5lib/wiki/UserDocumentation
+# http://djangosnippets.org/snippets/2444/
+import html5lib
+from html5lib import sanitizer
+def sanitize(value):
+    p = html5lib.HTMLParser(tokenizer=sanitizer.HTMLSanitizer)
+    return p.parseFragment(value).toxml()
 
 class Note(models.Model):
     
@@ -41,7 +51,7 @@ class Note(models.Model):
             # http://freewisdom.org/projects/python-markdown/Footnotes
             # typogrify - http://code.google.com/p/typogrify/ and http://djangosnippets.org/snippets/381/
             # =todo: make sure 'safe' extension strips HTML from markdown output to protect from xss vulnerability.
-        self.content_html = typogrify(markdown(self.content_markdown, ['safe', 'footnotes', 'tables', 'nl2br', 'codehilite']))
+        self.content_html = sanitize(typogrify(markdown(self.content_markdown, ['safe', 'extra', 'footnotes', 'tables', 'nl2br', 'codehilite'])))
         # self.content_html = markdown(self.content_markdown)
         self.modified = datetime.datetime.now()
         super(Note, self).save()
